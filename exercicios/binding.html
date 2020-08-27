@@ -9,11 +9,31 @@
 <body class="exercicio">
 
     <div id="app">
-
+        <p>{{ link }}</p>
+        <p><a href="{{ link }}">GitHub Profile ?</a></p>
+        <p><a v-bind:href="link">GitHub Profile</a></p>
+        <p><a :href="link">GitHub Profile 2</a></p>
+        <p>
+            <!-- v-model atualiza os dados em todos os elementos em duas direções -->
+            <input type="text" v-model="nome"><br>
+            <span>{{ nome }}</span>
+        </p>
     </div>
     <script>
-        
+        new Vue({
+            el: '#app',
+            data: {
+                nome: "Maria",
+                link: "https://github.com/marcelodv"
+            },
+            // Vai enxergar a mudança de atributos que têm o mesmo nome de dados dentro do data
+            watch: {
+                nome(novoValor) {
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
     </script>
-    
+
 </body>
 </html>
