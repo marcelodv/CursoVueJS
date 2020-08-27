@@ -9,14 +9,45 @@
 <body class="exercicio">
 
     <div id="app">
-
+        <p>{{ contador }}</p>
+        <p>
+            <button v-on:click="add"> +1 </button>
+            <button @click="contador --"> -1 </button>
+            <button v-on:click="clear"> C </button>
+        </p>
+        <p @mousemove="atualizarPosicao">
+            Cordenadas do Mouse: {{x}} e {{y}}
+            <br>
+            <span @mousemove.stop>
+                Aqui não funciona as Coordenadas
+            </span>
+        </p>
+        <label for="enterInput">Digite e clique Enter</label>
+        <input type="text" name="enterInput" @keyup.enter="alerta">
     </div>
-    
+
     <script>
         new Vue({
             el: "#app",
             data: {
-
+                x: 0,
+                y: 0,
+                contador: 0
+            },
+            methods: {
+                add() {
+                    this.contador ++
+                },
+                atualizarPosicao(e) {
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                clear() {
+                    this.contador = 0
+                },
+                alerta() {
+                    alert("Enter!")
+                }
             }
         })
     </script>
